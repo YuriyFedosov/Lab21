@@ -21,23 +21,23 @@ namespace TestApp1
 
         static void Main(string[] args)
         {
-            Console.Write("Введите вертикальный размер поля: ");
+            Console.Write("Введите вертикальный размер поля: "); // Параметры массива
             vDim = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите горизонтальный размер поля: ");
             gDim = Convert.ToInt32(Console.ReadLine());
             fieldTask = new int[vDim, gDim];
 
-            ThreadStart delPotoka1 = new ThreadStart(Worker1);
+            ThreadStart delPotoka1 = new ThreadStart(Worker1); //Определяем делегаты и экз.классов потока
             Thread Potok1 = new Thread(delPotoka1);
             ThreadStart delPotoka2 = new ThreadStart(Worker2);
             Thread Potok2 = new Thread(delPotoka2);
 
-            Potok1.Start();
+            Potok1.Start(); // Начало обработки
             Potok2.Start();
             Potok1.Join();
             Potok2.Join();
 
-            Console.WriteLine("\nРезультат работы на поле:");
+            Console.WriteLine("\nРезультат работы на поле:"); //Вывод поля с результатами
 
             for (int i = 0; i < vDim; i++)
             {
@@ -50,7 +50,7 @@ namespace TestApp1
 
             Console.ReadKey();
         }
-        static void Worker1()
+        static void Worker1() //Метод массива садовник 1
         {
 
             for (int i = 0; i < vDim; i++)
@@ -64,7 +64,7 @@ namespace TestApp1
                 Console.WriteLine("\nСадовник 1 закончил грядку {0}", i+1);
             }
         }
-        static void Worker2()
+        static void Worker2() //Метод массива садовник 2
         {
 
             for (int i = gDim - 1; i > 0; i--)
